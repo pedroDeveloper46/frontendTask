@@ -1,0 +1,36 @@
+<form action="">
+
+    <img src="assets/task.png" alt="">
+
+    <input type="text" placeholder="Descrição" class="form-control" name="description" [(ngModel)]="task.description">
+    <input type="date" placeholder="Quando fazer" class="form-control" name="whenToDo" [(ngModel)]="task.whenToDo">
+
+    <input type="button" value="Cadastrar" class="btn btn-primary" *ngIf="btnCadastro" (click)="cadastrar()">    
+    <input type="button" value="Alterar" class="btn btn-warning" *ngIf="!btnCadastro" (click)="atualizar()">
+    <input type="button" value="Remover" class="btn btn-danger" *ngIf="!btnCadastro" (click)="remover()">
+    <input type="button" value="Cancelar" class="btn btn-secondary" *ngIf="!btnCadastro" (click)="cancelar()">
+    
+    
+
+</form>
+
+
+<table class="table " *ngIf="tabela">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Descrição</th>
+            <th>Quando fazer</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let t of tasks index as i">
+            <td>{{t.id}}</td>
+            <td>{{t.description}}</td>
+            <td>{{t.whenToDo}}</td> 
+            <td><button class="btn btn-success" (click)="selecionarTask(i)">Selecionar</button></td>
+        </tr>
+    </tbody>
+</table>
